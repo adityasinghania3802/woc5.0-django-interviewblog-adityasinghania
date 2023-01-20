@@ -9,6 +9,10 @@ from .forms import CreateUserForm
 from django.contrib import messages
 from .models import *
 from .forms import *
+
+def index(request):
+    return render(request,'index.html')
+
 def registerpage(request):
     form=CreateUserForm(request.POST)
     if(request.method=="POST"):

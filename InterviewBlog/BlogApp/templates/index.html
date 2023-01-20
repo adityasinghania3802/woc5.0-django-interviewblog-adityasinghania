@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Bootstrap demo</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+    <style>
+        body{
+            background: linear-gradient(to top, #cc208e 0%, #6713d2 100%);
+            
+        }
+        .divider:after,
+        .divider:before {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: #eee;
+        }
+        .h-custom {
+        height: calc(100% - 73px);
+        }
+        @media (max-width: 450px) {
+        .h-custom {
+        height: 100%;
+        }
+    }
+        
+
+    </style>
+  </head>
+  <body>
+    <br>
+    <br>
+    <h1 class="text-center text-white">Welcome to Interview Blog App!</h1>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+  </body>
+</html>
+
+<section class="vh-100">
+    <div class="container-fluid h-custom">
+      <div class="row d-flex justify-content-center align-items-center h-100">
+        <div class=" text-center col-md-9 col-lg-6 col-xl-5">
+          <img src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png"
+            class="img-fluid img-thumbnail" alt="Sample image">
+        </div>
+        <div class="col-md-8 col-lg-6 col-xl-4 offset-xl-1">
+            
+            <div class="text-center text-lg-start mt-4 pt-2">
+              <button type="submit" class="btn btn-warning btn-lg" onclick="window.location.href = 'register'"
+                style="padding-left: 8rem; padding-right: 8rem; margin-bottom: 1rem; margin-left: 5rem;">SignUp</button>
+                <br>
+              <button type="button" class=" btn btn-warning btn-lg " onclick="window.location.href = 'login'"
+                style="padding-left: 8rem; padding-right: 8.8rem; margin-bottom: 3rem; margin-left: 5rem;">Login</button>
+            </div>
+  
+          
+        </div>
+      </div>
+    </div>
+  </section>
