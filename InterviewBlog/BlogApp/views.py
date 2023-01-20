@@ -22,6 +22,7 @@ def registerpage(request):
             update.program=user.program
             update.batch=user.batch
             update.save()
+            messages.info(request, 'Account has been registered. Login to continue!!')
             return redirect('login')
     params={'form':form}
     return render(request,'register.html',params)
