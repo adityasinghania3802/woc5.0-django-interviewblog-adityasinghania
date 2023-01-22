@@ -21,7 +21,6 @@ def registerpage(request):
             user=form.save()
             user.batch=request.POST.get('batch')
             user.program=request.POST.get('program')
-
             update=Account(user=user)
             update.program=user.program
             update.batch=user.batch
@@ -40,7 +39,7 @@ def loginpage(request):
 
         if user is not None:
             login(request, user)
-            return redirect ('home')
+            return redirect ('dashboard')
         else:
             messages.info(request, 'Username or password is incorrect')
     params={}
@@ -53,3 +52,10 @@ def logoutpage(request):
 @login_required(login_url='/login')
 def homepage(request):
     return render(request,'home.html')
+
+@login_required(login_url='/login')
+def dashboard(request):
+    profile=Account.objects.all()
+    # print(profile)
+    # print(Account.objects.values('program','batch'))
+    return render(request,'dashboard.html')

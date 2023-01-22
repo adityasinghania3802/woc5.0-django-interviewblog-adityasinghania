@@ -59,34 +59,40 @@
                 placeholder="Enter your UserName..."> -->
                 {{form.username.label}}
                 {{form.username}}
+                {{form.username.errors}}
             </div>
             <div class="mb-3">
               <!-- <input type="email" class="form-control" id="email" placeholder="Enter your Email..."> -->
               {{form.email.label}}
               {{form.email}}
+              {{form.email.errors}}
             </div>
             <div class="mb-3">
               <!-- <input type="text" class="form-control" id="program" placeholder="Enter Program you are studying in..."> -->
               {{form.program.label}}
               {{form.program}}
+              {{form.program.errors}}
             </div>
             <div class="mb-3">
               <!-- <input type="number" class="form-control" id="batch" placeholder="Enter your Batch..."> -->
               {{form.batch.label}}
               {{form.batch}}
+              {{form.batch.errors}}
             </div>
             <div class="mb-3">
               <!-- <input type="password" class="form-control" id="password" placeholder="Enter your Password..."> -->
               {{form.password1.label}}
               {{form.password1}}
+              {{form.password1.errors}}
             </div>
             <div class="mb-3">
               <!-- <input type="password" class="form-control" id="Confpassword" placeholder="Re-Enter your Password..."> -->
               {{form.password2.label}}
               {{form.password2}}
+              {{form.password2.errors}}
             </div>
 
-            {{form.errors}}
+            
             <div class="text-center"><button type="submit" class="btn btn-color px-5 mb-5 w-100" >SignUp</button></div>
             <div id="emailHelp" class="form-text text-center mb-5 text-dark">Already have an account? <a href="{% url 'login' %}" class="to fw-bold"> Login Here!</a>
               </div>
