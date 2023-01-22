@@ -55,7 +55,11 @@ def homepage(request):
 
 @login_required(login_url='/login')
 def dashboard(request):
-    profile=Account.objects.all()
-    # print(profile)
-    # print(Account.objects.values('program','batch'))
-    return render(request,'dashboard.html')
+    profile=list(Account.objects.filter(user=request.user).values('batch','program'))
+    batch = profile[0]['batch']
+    program = profile[0]['program']
+    params = {
+        'batch' : batch,
+        'program': program
+    }
+    return render(request,'dashboard.html', params)
