@@ -49,11 +49,11 @@ def logoutpage(request):
     logout(request)
     return redirect('login')
 
-@login_required(login_url='/login')
+# @login_required(login_url='/login')
 def homepage(request):
     return render(request,'home.html')
 
-@login_required(login_url='/login')
+# @login_required(login_url='/login')
 def dashboard(request):
     profile=Account.objects.all()
     # print(profile)

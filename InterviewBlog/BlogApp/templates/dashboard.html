@@ -55,6 +55,9 @@
               <input class="form-control me-2" type="search" placeholder="Search here.." aria-label="Search">
               <button class="btn btn-outline-success" style=" font-weight:bold;" type="submit">Search</button>
             </form>
+            <button class="btn btn-outline-danger" style=" font-weight:bold; margin-left: 10px;" type="submit">
+                 <a class="nav-link" style=" font-weight:bold;" href="{% url 'logout' %}">Logout</a>
+            </button>
           </div>
         </div>
       </nav>
@@ -91,7 +94,7 @@
                       <div class="row pt-1">
                         <div class="col-6 mb-3">
                           <h6>Program</h6>
-                          <p class="text-muted">{{request.Account.program}}</p>
+                          <p class="text-muted">{{request.user.program}}</p>
                         </div>
                         <div class="col-6 mb-3">
                           <h6>Batch</h6>
