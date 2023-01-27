@@ -10,6 +10,6 @@ urlpatterns = [
     path('home/', views.homepage, name="home"),
     path('dashboard/', views.dashboard, name="dashboard"),
     path('addpost/', views.addpost, name="addpost"),
-    path('viewpost/', views.viewpost, name="viewpost")
+    path('viewpost/<int:pid>', views.viewpost, name="viewpost")
 
 ]

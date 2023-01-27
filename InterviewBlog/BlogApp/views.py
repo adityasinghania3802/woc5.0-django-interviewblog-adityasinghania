@@ -55,7 +55,7 @@ def homepage(request):
     post = BlogPost.objects.all()
     return render(request,'home.html',{'post':post})
 
-@login_required(login_url='/login')
+# @login_required(login_url='/login')
 def dashboard(request):
     # profile=list(Account.objects.filter(user=request.user).values('batch','program'))
     # batch = profile[0]['batch']
@@ -86,5 +86,7 @@ def addpost(request):
         List.append(i)
     return render(request,'addpost.html',{'List':List})
 
-def viewpost(request):
-    return render(request,'viewpost.html')
+def viewpost(request,pid):
+    post=BlogPost.objects.get(post_id=pid)
+    params = {'post':post}
+    return render(request,'viewpost.html',params)
