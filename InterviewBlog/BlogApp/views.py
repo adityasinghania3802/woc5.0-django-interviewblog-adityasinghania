@@ -19,6 +19,7 @@ def registerpage(request):
         
         if form.is_valid():
             user=form.save()
+
             user.batch=request.POST.get('batch')
             user.program=request.POST.get('program')
             update=Account(user=user)
@@ -55,11 +56,31 @@ def homepage(request):
 
 @login_required(login_url='/login')
 def dashboard(request):
-    profile=list(Account.objects.filter(user=request.user).values('batch','program'))
-    batch = profile[0]['batch']
-    program = profile[0]['program']
-    params = {
-        'batch' : batch,
-        'program': program
-    }
-    return render(request,'dashboard.html', params)
+    # profile=list(Account.objects.filter(user=request.user).values('batch','program'))
+    # batch = profile[0]['batch']
+    # program = profile[0]['program']
+    # params = {
+    #     'batch' : batch,
+    #     'program': program
+    # }
+    return render(request,'dashboard.html')
+
+def addpost(request):
+    if request.method=='POST':
+            blog_title = request.POST.get('blog_title')
+            company_name = request.POST.get('company_name')
+            job_offer_type = request.POST.get('job_offer_type')        
+            job_profile = request.POST.get('job_profile')        
+            year = request.POST.get('year')   
+            blog_content = request.POST.get('blog_content')   
+            author=request.user
+            update=BlogPost(blog_title=blog_title, company_name=company_name, job_offer_type=job_offer_type, job_profile=job_profile, year= year, blog_content=blog_content, author=author)
+            update.save()
+            messages.info(request, 'Your Entry has been Submitted!!')
+
+
+    List=[]
+    temp = BlogPost.CHOICES
+    for i,j in temp:
+        List.append(i)
+    return render(request,'addpost.html',{'List':List})

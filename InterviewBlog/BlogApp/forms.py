@@ -9,3 +9,12 @@ class CreateUserForm(UserCreationForm):
     class Meta:
         model = User
         fields = ['username','email','program','batch','password1','password2']
+
+
+# class CreateBlogPost(UserCreationForm):
+#     blog_title = forms.CharField(label='Title')
+#     company_name = forms.CharField(label="Company Name")
+#     year = forms.IntegerField(label='Year')
+#     job_profile = forms.CharField(label = 'Job Profile')
+#     job_offer_type = forms.CharField(label='Job Offer Type')
+#     blog_content = forms.CharField(label='Content')
