@@ -50,9 +50,10 @@ def logoutpage(request):
     logout(request)
     return redirect('login')
 
-@login_required(login_url='/login')
+# @login_required(login_url='/login')
 def homepage(request):
-    return render(request,'home.html')
+    post = BlogPost.objects.all()
+    return render(request,'home.html',{'post':post})
 
 @login_required(login_url='/login')
 def dashboard(request):
@@ -84,3 +85,6 @@ def addpost(request):
     for i,j in temp:
         List.append(i)
     return render(request,'addpost.html',{'List':List})
+
+def viewpost(request):
+    return render(request,'viewpost.html')

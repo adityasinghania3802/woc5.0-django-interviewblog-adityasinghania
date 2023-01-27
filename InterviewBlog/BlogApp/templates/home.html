@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Home</title>
+    <title>Explore</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <style>
         body{
@@ -22,7 +22,7 @@
     </style>
   </head>
   <body>
-    <nav class="navbar navbar-expand-lg" style=" background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1)); ">
+    <nav class="navbar navbar-expand-lg " style=" background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1)); ">
         <div class="container-fluid">
           <a class="navbar-brand" href="#" style=" font-weight:bold;">Interview Blog</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -61,10 +61,88 @@
           </div>
         </div>
       </nav>
-      <section class="vh-100" >
-        <h1 style="color: white" >Welcome, {{request.user}} to Interview Blog App</h1>
-      </section>
-        <!-- <span><a href="{% url 'logout' %}">Logout</a></span>     -->
+      <div id="carouselExampleCaptions" class="carousel slide carousel-fade" data-bs-ride="false">
+        <div class="carousel-indicators">
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active"
+                aria-current="true" aria-label="Slide 1"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1"
+                aria-label="Slide 2"></button>
+            <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2"
+                aria-label="Slide 3"></button>
+        </div>
+        <div class="carousel-inner">
+            <div class="carousel-item active">
+                <img src="https://www.linkpicture.com/q/1_1157.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h1>Welcome to Interview Blog App</h5>
+                        <h6>A Community built to share your Interview Experiences</h6>
+                        <br><br>
+                        <!-- <button class="btn btn-danger">Technology</button>
+                        <button class="btn btn-primary">Wev Development</button>
+                        <button class="btn btn-success">Tech Fun</button> -->
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://www.linkpicture.com/q/3_538.jpg" class="d-block w-100" alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h1>Welcome to Interview Blog App</h5>
+                        <h6>A Community built to share your Interview Experiences</h6>
+                        <br><br>
+                        <!-- <button class="btn btn-danger">Technology</button>
+                        <button class="btn btn-primary">Wev Development</button>
+                        <button class="btn btn-success">Tech Fun</button> -->
+                </div>
+            </div>
+            <div class="carousel-item">
+                <img src="https://www.linkpicture.com/q/2_754.jpg" class="d-block w-100 "  alt="...">
+                <div class="carousel-caption d-none d-md-block">
+                    <h1>Welcome to Interview Blog App</h5>
+                        <h6>A Community built to share your Interview Experiences</h6>
+                        <br><br>
+                        <!-- <button class="btn btn-danger">Technology</button>
+                        <button class="btn btn-primary">Wev Development</button>
+                        <button class="btn btn-success">Tech Fun</button> -->
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+
+    <div class="container my-4">
+      {% for i in post %}
+            <div class="col-md-11">
+                <div
+                    class="row g-0 border rounded overflow-hidden flex-md-row mb-5 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static bg-white ">
+                        <strong class="d-inline-block mb-2 text-primary">{{i.author}} | {{i.job_profile}}</strong>
+                        <h3 class="mb-3">{{i.blog_title}}</h3>
+                        
+                        <div class="mb-1 text-muted" style="font-weight: bold;"> {{i.company_name}} </div>
+                        
+                        <p class="card-text mb-1">{{i.job_offer_type}}</p>
+                        <div class="mb-1 text-muted">Year: {{i.year}}</div>
+                    
+                        <a href="{% url 'viewpost' %}" class=" btn btn-primary mt-2" role="button" style="width: 25%;">Continue reading...</a>
+                    </div>
+                    <div class="col-auto d-none d-lg-block">
+                        <img class="bd-placeholder-img" width="250" height="260"  src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png" alt="">
+                            <title>Placeholder</title>
+
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+            
+    </div>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     </body>
   </html>

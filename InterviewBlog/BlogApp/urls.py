@@ -10,6 +10,6 @@ urlpatterns = [
     path('home/', views.homepage, name="home"),
     path('dashboard/', views.dashboard, name="dashboard"),
     path('addpost/', views.addpost, name="addpost"),
-    # path('post/<int:post_id>', views.post, name="post")
+    path('viewpost/', views.viewpost, name="viewpost")
 
 ]
