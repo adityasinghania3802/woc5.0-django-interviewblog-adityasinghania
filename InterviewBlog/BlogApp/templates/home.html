@@ -38,18 +38,18 @@
               </li>
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" style=" font-weight:bold;" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Dropdown
+                  Accounts
                 </a>
                 <ul class="dropdown-menu">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="{% url 'bookmarkslist' %}">BookMarks</a></li>
                   <li><a class="dropdown-item" href="#">Another action</a></li>
                   <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <li><a class="dropdown-item" href="{% url 'dashboard' %}">DashBoard</a></li>
                 </ul>
               </li>
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a class="nav-link " style=" font-weight:bold;" href="{% url 'dashboard' %}">DashBoard</a>
-              </li>
+              </li> -->
             </ul>
             <form class="d-flex" role="search" method="get" action="/search" >
               <input class="form-control me-2" type="search" placeholder="Search here.." aria-label="Search" name="search" id="search">

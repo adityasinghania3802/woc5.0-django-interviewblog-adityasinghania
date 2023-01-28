@@ -11,6 +11,9 @@ urlpatterns = [
     path('dashboard/', views.dashboard, name="dashboard"),
     path('addpost/', views.addpost, name="addpost"),
     path('viewpost/<int:pid>', views.viewpost, name="viewpost"),
-    path('search/', views.search, name="search")
+    path('search/', views.search, name="search"),
+    path('bookmarks/<int:pid>', views.bookmarks, name="bookmarks"),
+    path('bookmarks_remove/<int:pid>', views.bookmarks_remove, name="bookmarks_remove"),
+    path('bookmarks_list/', views.bookmarkslist, name="bookmarkslist")
 
 ]

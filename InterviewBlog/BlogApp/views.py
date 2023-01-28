@@ -1,5 +1,5 @@
 # Create your views here.
-from django.shortcuts import render,redirect
+from django.shortcuts import render,redirect,HttpResponseRedirect,get_object_or_404
 from django.contrib.auth.models import User
 from django.contrib.auth  import authenticate, login, logout
 from django import forms
@@ -103,5 +103,27 @@ def search(request):
         searchPostsCompany = BlogPost.objects.filter(company_name__icontains=searchresult)
         searchPosts=searchPostsTitle.union(searchPostsContent,searchPostsCompany,searchPostsYear)
     
-    params = {'searchPosts' :searchPosts}
+    params = {'searchPosts' : searchPosts}
     return render(request, 'search.html', params)
+
+
+def bookmarks(request,pid):
+    post=BlogPost.objects.get(post_id=pid)
+    
+    # if post.bookmarks.filter(User=request.user.post_id).exists():
+    #     post.bookmarks.remove(request.user)
+    # else:
+    post.bookmarks.add(request.user)
+    messages.info(request, 'Added to Bookmarks Successfully!')
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+
+def bookmarks_remove(request,pid):
+    post=BlogPost.objects.get(post_id=pid)
+    post.bookmarks.remove(request.user)
+    messages.info(request, 'Removed from Bookmarks Successfully!')
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+def bookmarkslist(request):
+    list = BlogPost.objects.filter(bookmarks=request.user)
+    return render(request, 'bookmarks.html', {'list': list})

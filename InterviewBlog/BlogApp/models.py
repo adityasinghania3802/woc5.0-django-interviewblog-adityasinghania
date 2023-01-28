@@ -22,6 +22,7 @@ class BlogPost(models.Model):
     year = models.IntegerField()
     # image = models.ImageField(upload_to="None")
     author = models.ForeignKey(User,on_delete=models.CASCADE,blank=True,null=True)
+    bookmarks = models.ManyToManyField(User, default=None, blank=True, related_name='bookmarks')
 
     def __str__(self):
         return self.blog_title + '|' + str(self.author)
