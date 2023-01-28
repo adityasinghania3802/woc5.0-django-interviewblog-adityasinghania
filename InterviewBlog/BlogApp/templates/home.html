@@ -47,9 +47,9 @@
                   <li><a class="dropdown-item" href="{% url 'dashboard' %}">DashBoard</a></li>
                 </ul>
               </li>
-              <!-- <li class="nav-item">
-                <a class="nav-link " style=" font-weight:bold;" href="{% url 'dashboard' %}">DashBoard</a>
-              </li> -->
+              <li class="nav-item">
+                <a class="nav-link " style=" font-weight:bold;" href="{% url 'myblogs' %}">My Blogs</a>
+              </li>
             </ul>
             <form class="d-flex" role="search" method="get" action="/search" >
               <input class="form-control me-2" type="search" placeholder="Search here.." aria-label="Search" name="search" id="search">
@@ -116,7 +116,6 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-
     <div class="container my-4">
       {% for i in post %}
             <div class="col-md-11">

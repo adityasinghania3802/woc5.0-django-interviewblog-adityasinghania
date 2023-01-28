@@ -14,6 +14,10 @@ urlpatterns = [
     path('search/', views.search, name="search"),
     path('bookmarks/<int:pid>', views.bookmarks, name="bookmarks"),
     path('bookmarks_remove/<int:pid>', views.bookmarks_remove, name="bookmarks_remove"),
-    path('bookmarks_list/', views.bookmarkslist, name="bookmarkslist")
+    path('bookmarks_list/', views.bookmarkslist, name="bookmarkslist"),
+    path('myblogs/',views.myblogs, name="myblogs"),
+    path('editpost/<int:pid>', views.editpost, name="editpost"),
+    path('editpostrecord/<int:pid>',views.editpostrecord,name="editpostrecord"),
+    path('deletepost/<int:pid>', views.deletepost, name="deletepost"),
 
 ]

@@ -9,6 +9,7 @@ from .forms import CreateUserForm
 from django.contrib import messages
 from .models import *
 from .forms import *
+from django.urls import reverse
 
 def index(request):
     return render(request,'index.html')
@@ -101,7 +102,9 @@ def search(request):
         # searchPostsName = BlogPost.objects.filter(author__icontains=searchresult)
         searchPostsYear = BlogPost.objects.filter(year__icontains=searchresult)
         searchPostsCompany = BlogPost.objects.filter(company_name__icontains=searchresult)
-        searchPosts=searchPostsTitle.union(searchPostsContent,searchPostsCompany,searchPostsYear)
+        searchPostsJobProfile = BlogPost.objects.filter(job_profile__icontains=searchresult)
+        searchPostsJobOfferType = BlogPost.objects.filter(job_offer_type__icontains=searchresult)
+        searchPosts=searchPostsTitle.union(searchPostsContent,searchPostsCompany,searchPostsYear,searchPostsJobProfile,searchPostsJobOfferType)
     
     params = {'searchPosts' : searchPosts}
     return render(request, 'search.html', params)
@@ -127,3 +130,43 @@ def bookmarks_remove(request,pid):
 def bookmarkslist(request):
     list = BlogPost.objects.filter(bookmarks=request.user)
     return render(request, 'bookmarks.html', {'list': list})
+
+def editpost(request,pid):
+    post = BlogPost.objects.get(post_id=pid)
+    List=[]
+    temp = BlogPost.CHOICES
+    for i,j in temp:
+        List.append(i)
+    params ={'post' :post,
+    'List' : List
+    }
+    return render(request, 'editpost.html', params)
+
+def editpostrecord(request,pid):
+    if request.method == 'POST':
+        title = request.POST['blog_title']
+        name = request.POST['company_name']
+        # offer_type = request.POST['job_offer_type']        
+        profile = request.POST['job_profile']      
+        year_ = request.POST['year']
+        content = request.POST['blog_content']   
+        record = BlogPost.objects.get(post_id=pid)
+        record.blog_title = title
+        record.company_name = name
+        # record.job_offer_type = offer_type
+        record.job_profile = profile
+        record.year = year_
+        record.blog_content = content
+        record.save()
+        messages.info(request, 'Your Entry has been Updated!!')
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+def myblogs(request):
+    author=request.user
+    post = BlogPost.objects.filter(author=author)
+    return render(request, 'myblogs.html', { 'post': post})
+
+def deletepost(request,pid):
+    BlogPost.objects.filter(post_id=pid).delete()
+    myblogs(request)
+    return HttpResponseRedirect(request.META['HTTP_REFERER'])

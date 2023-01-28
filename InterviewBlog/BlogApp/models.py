@@ -17,7 +17,7 @@ class BlogPost(models.Model):
     blog_content = models.TextField(default="..")
     company_name = models.CharField(max_length=50,default="")
     CHOICES = (('Summer Internship','Summer Intership'),('Winter Internship Only','Winter Intership Only'),('Winter Internship & Job','Winter Internship & Job'),('Job Only','Job Only'))
-    job_offer_type = models.CharField(max_length=100, choices=CHOICES,default="Job Only")
+    job_offer_type = models.CharField(max_length=100, choices=CHOICES, default="Job Only")
     job_profile = models.CharField(max_length=50,default="")
     year = models.IntegerField()
     # image = models.ImageField(upload_to="None")
