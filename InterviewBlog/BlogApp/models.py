@@ -14,7 +14,7 @@ class Account(models.Model):
 class BlogPost(models.Model):
     post_id = models.AutoField(primary_key=True)
     blog_title = models.CharField(max_length=100,default="Read my first post")
-    blog_content = models.CharField(max_length=500,default="..")
+    blog_content = models.TextField(default="..")
     company_name = models.CharField(max_length=50,default="")
     CHOICES = (('Summer Internship','Summer Intership'),('Winter Internship Only','Winter Intership Only'),('Winter Internship & Job','Winter Internship & Job'),('Job Only','Job Only'))
     job_offer_type = models.CharField(max_length=100, choices=CHOICES,default="Job Only")

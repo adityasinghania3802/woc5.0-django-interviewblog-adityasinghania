@@ -90,3 +90,18 @@ def viewpost(request,pid):
     post=BlogPost.objects.get(post_id=pid)
     params = {'post':post}
     return render(request,'viewpost.html',params)
+
+def search(request):
+    searchresult=request.GET['search']
+    if len(searchresult)>100:
+        searchPosts= BlogPost.objects.none()
+    else:
+        searchPostsTitle = BlogPost.objects.filter(blog_title__icontains=searchresult)
+        searchPostsContent = BlogPost.objects.filter(blog_content__icontains=searchresult)
+        # searchPostsName = BlogPost.objects.filter(author__icontains=searchresult)
+        searchPostsYear = BlogPost.objects.filter(year__icontains=searchresult)
+        searchPostsCompany = BlogPost.objects.filter(company_name__icontains=searchresult)
+        searchPosts=searchPostsTitle.union(searchPostsContent,searchPostsCompany,searchPostsYear)
+    
+    params = {'searchPosts' : searchPosts}
+    return render(request, 'search.html', params)
