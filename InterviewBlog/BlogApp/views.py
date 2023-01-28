@@ -103,5 +103,5 @@ def search(request):
         searchPostsCompany = BlogPost.objects.filter(company_name__icontains=searchresult)
         searchPosts=searchPostsTitle.union(searchPostsContent,searchPostsCompany,searchPostsYear)
     
-    params = {'searchPosts' : searchPosts}
+    params = {'searchPosts' :searchPosts}
     return render(request, 'search.html', params)
