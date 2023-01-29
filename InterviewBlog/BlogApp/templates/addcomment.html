@@ -64,7 +64,7 @@
       <section class="vh-100">
         <br>
         <h2 class="text-center" style="color: white;" >Add Comment..</h2>
-        <div class="container md-4">
+        <div class="container md-4 w-75">
         <form method="post" action="" class="card-body cardbody-color p-lg-5" autocomplete="on">
             {% csrf_token %}
             <div class="mb-3">
@@ -75,7 +75,7 @@
                 <textarea class="form-control" id="body" name="body"  placeholder="Body" rows="4" required></textarea>
             </div>
             <br>
-            <div class="text-center"><button  type="submit" class="btn btn-warning mb-5" style="width: 8%;">Comment</button></div>
+            <div class="text-center"><button  type="submit" class="btn btn-warning mb-5" style="width: 10%;">Comment</button></div>
             {% for message in messages %}
               <h4 id="messages" class="text-center" style="color: white;">{{message}}</h3>
               {%endfor%}
