@@ -89,7 +89,14 @@ def addpost(request):
 
 def viewpost(request,pid):
     post=BlogPost.objects.get(post_id=pid)
-    params = {'post':post}
+    # comments = get_object_or_404(Comment, BlogPost.post_id=pid)
+    comments = Comment.objects.all()
+    targetcomments =[]
+    for i in comments:
+        if i.postcomments.post_id==pid:
+            targetcomments.append(i)
+
+    params = {'post':post, 'targetcomments' : targetcomments}
     return render(request,'viewpost.html',params)
 
 def search(request):
@@ -170,3 +177,13 @@ def deletepost(request,pid):
     BlogPost.objects.filter(post_id=pid).delete()
     myblogs(request)
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
+
+def addcomment(request, pid):
+    if request.method=='POST':
+            post = get_object_or_404(BlogPost, post_id=pid)
+            name = request.POST.get('name')
+            body = request.POST.get('body')
+            update=Comment(name=name, body=body, postcomments=post)
+            update.save()
+            messages.info(request, 'Your Comment is added!!')
+    return render(request, 'addcomment.html')

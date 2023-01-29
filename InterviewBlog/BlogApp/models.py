@@ -26,3 +26,11 @@ class BlogPost(models.Model):
 
     def __str__(self):
         return self.blog_title + '|' + str(self.author)
+
+class Comment(models.Model):
+    postcomments = models.ForeignKey(BlogPost, on_delete=models.CASCADE, related_name='postcomments', default=None)
+    name = models.CharField(max_length=50)
+    body = models.TextField()
+
+    def __str__(self):
+        return self.postcomments.blog_title + '|' + str(self.name)
