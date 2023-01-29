@@ -74,14 +74,23 @@
                 <span class="mb-4" style=" display: inline-block;">{{post.blog_content}}</span>
                 <br>
                 
-                <button type="submit" class="btn btn-success mb-4">Up Vote</button>
-                <!-- <button type="submit" class="btn btn-danger mb-4">Down Vote</button> -->
-                
-                <!-- <button type="submit" class="btn btn-info mb-4" style="margin-left: 44%;" > Add to BookMarks</button> -->
-                <a href="/bookmarks/{{post.post_id}}" class=" btn btn-info mb-4" role="button" style="width: 25%;
+                {% if not liked %}
+                <a href="/likes/{{post.post_id}}" class="btn btn-primary mb-4 " role="button" style="width: 12%;"> Like </a>
+
+                {% else %}
+                <a href="/likes/{{post.post_id}}" class="btn btn-danger mb-4 " role="button" style="width: 12%;"> Unlike </a>
+
+                {% endif %}
+                 {{total_likes}} Likes
+
+                {% if not bookmarked %}
+                <a href="/bookmarks/{{post.post_id}}" class=" btn btn-success mb-4" role="button" style="width: 25%;
                 margin-left: 25%;">Add to Bookmarks</a>
-                <a href="/bookmarks_remove/{{post.post_id}}" class=" btn btn-danger mb-4" role="button" style="width: 35%;
-                ;">Remove from Bookmarks</a>
+
+                {% else %}
+                <a href="/bookmarks/{{post.post_id}}" class=" btn btn-danger mb-4" role="button" style="width: 35%; margin-left: 25%;">Remove from Bookmarks</a>
+
+                {% endif %}
                 <br>
                 {% for message in messages %}
                 <p class="text-center">{{message}}</p>
@@ -100,7 +109,7 @@
         <br>
         <h2>Comments...</h2>
         {% if targetcomments|length > 0 %}
-        <a href="/viewpost/{{post.post_id}}/addcomment" class=" btn btn-primary mt-2" role="button" style="width: 15%;">Add Your Comment </a>
+        <a href="/viewpost/{{post.post_id}}/addcomment" class=" btn btn-info mt-2" role="button" style="width: 15%;">Add Your Comment </a>
         <br><br><br>
           {% for i in targetcomments %}
           <div>

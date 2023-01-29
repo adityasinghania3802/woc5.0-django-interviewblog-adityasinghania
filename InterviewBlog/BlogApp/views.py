@@ -96,7 +96,20 @@ def viewpost(request,pid):
         if i.postcomments.post_id==pid:
             targetcomments.append(i)
 
-    params = {'post':post, 'targetcomments' : targetcomments}
+    liked_post = get_object_or_404(BlogPost, post_id=pid)
+    total_likes = liked_post.total_likes()
+
+    liked=False
+    if liked_post.likes.filter(id=request.user.id).exists():
+        liked=True
+
+    bookmarked_post = get_object_or_404(BlogPost, post_id=pid)
+
+    bookmarked=False
+    if bookmarked_post.bookmarks.filter(id=request.user.id).exists():
+        bookmarked=True
+
+    params = {'post':post, 'targetcomments' : targetcomments, 'total_likes' : total_likes, 'liked' : liked, 'bookmarked' : bookmarked}
     return render(request,'viewpost.html',params)
 
 def search(request):
@@ -116,23 +129,24 @@ def search(request):
     params = {'searchPosts' : searchPosts}
     return render(request, 'search.html', params)
 
+def likes(request,pid):
+    post = BlogPost.objects.get(post_id=pid)
+    if post.likes.filter(id=request.user.id).exists():
+        post.likes.remove(request.user)
+    else:
+        post.likes.add(request.user)
+
+    return HttpResponseRedirect(reverse('viewpost', args=[str(pid)]))
 
 def bookmarks(request,pid):
     post=BlogPost.objects.get(post_id=pid)
     
-    # if post.bookmarks.filter(User=request.user.post_id).exists():
-    #     post.bookmarks.remove(request.user)
-    # else:
-    post.bookmarks.add(request.user)
-    messages.info(request, 'Added to Bookmarks Successfully!')
-    return HttpResponseRedirect(request.META['HTTP_REFERER'])
+    if post.bookmarks.filter(id=request.user.id).exists():
+        post.bookmarks.remove(request.user)
+    else:
+        post.bookmarks.add(request.user)
+    return HttpResponseRedirect(reverse('viewpost', args=[str(pid)]))
 
-
-def bookmarks_remove(request,pid):
-    post=BlogPost.objects.get(post_id=pid)
-    post.bookmarks.remove(request.user)
-    messages.info(request, 'Removed from Bookmarks Successfully!')
-    return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
 def bookmarkslist(request):
     list = BlogPost.objects.filter(bookmarks=request.user)
