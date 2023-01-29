@@ -107,14 +107,14 @@
       <br>
       <div class="container bg-white">
         <br>
-        <h2>Comments...</h2>
+        <h2 style="margin-left: 20px;">Comments...</h2>
         {% if targetcomments|length > 0 %}
-        <a href="/viewpost/{{post.post_id}}/addcomment" class=" btn btn-info mt-2" role="button" style="width: 15%;">Add Your Comment </a>
+        <a href="/viewpost/{{post.post_id}}/addcomment" class=" btn btn-info mt-2" role="button" style="width: 15%; margin-left: 45%;">Add Your Comment </a>
         <br><br><br>
           {% for i in targetcomments %}
           <div>
-            <h5 style="font-weight: bold;">{{i.name}}</h5>
-            <h6>{{i.body}}</h6>
+            <h5 style="font-weight: bold; margin-left: 80px;">{{i.name}}</h5>
+            <h6 style="margin-left: 80px;">{{i.body}}</h6>
             <br>
           </div>
             {% endfor %}
@@ -125,7 +125,6 @@
 
         {% endif %}
         
-
       </div>
     </div>
   <!-- </section> -->

@@ -10,6 +10,7 @@ from django.contrib import messages
 from .models import *
 from .forms import *
 from django.urls import reverse
+from django.db.models import Max,Min
 
 def index(request):
     return render(request,'index.html')
@@ -54,7 +55,13 @@ def logoutpage(request):
 # @login_required(login_url='/login')
 def homepage(request):
     post = BlogPost.objects.all()
+    # for i in set:
+    #     i.likecount = i.total_likes()
+    #     print(i.likecount)
+    # # post = BlogPost.objects.annotate(max_likes=Max('likecount')).order_by('-max_likes')
+    # post = BlogPost.objects.all().order_by('-likecount')
     return render(request,'home.html',{'post':post})
+
 
 # @login_required(login_url='/login')
 def dashboard(request):
