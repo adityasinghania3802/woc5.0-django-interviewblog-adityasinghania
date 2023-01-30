@@ -19,6 +19,7 @@ urlpatterns = [
     path('editpost/<int:pid>', views.editpost, name="editpost"),
     path('editpostrecord/<int:pid>',views.editpostrecord,name="editpostrecord"),
     path('deletepost/<int:pid>', views.deletepost, name="deletepost"),
-    path('viewpost/<int:pid>/addcomment', views.addcomment, name="addcomment")
+    path('viewpost/<int:pid>/addcomment', views.addcomment, name="addcomment"),
+    path('editprofile/',views.editprofile,name="editprofile"),
 
 ]

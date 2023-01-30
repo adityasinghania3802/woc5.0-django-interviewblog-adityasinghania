@@ -4,8 +4,8 @@ from django import forms
 from django.contrib.auth.models import User 
 
 class CreateUserForm(UserCreationForm):
-    program = forms.CharField(label='Program')
-    batch = forms.IntegerField(label='Batch')
+    program = forms.CharField(label='Program',required=True)
+    batch = forms.IntegerField(label='Batch',required=True)
     class Meta:
         model = User
         fields = ['username','email','program','batch','password1','password2']
@@ -18,3 +18,10 @@ class CreateUserForm(UserCreationForm):
 #     job_profile = forms.CharField(label = 'Job Profile')
 #     job_offer_type = forms.CharField(label='Job Offer Type')
 #     blog_content = forms.CharField(label='Content')
+
+class UpdateUserForm(forms.ModelForm):
+     program = forms.CharField(label='Program',required=True)
+     batch = forms.IntegerField(label='Batch',required=True)
+     class Meta:
+        model = User
+        fields = ['program','batch']

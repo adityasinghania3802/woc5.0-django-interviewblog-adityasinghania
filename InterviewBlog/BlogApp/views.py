@@ -208,3 +208,28 @@ def addcomment(request, pid):
             update.save()
             messages.info(request, 'Your Comment is added!!')
     return render(request, 'addcomment.html')
+
+def editprofile(request):
+    user=request.user
+    form = UpdateUserForm(initial={
+        'program':user.account.program,
+        'batch' :user.account.batch,
+    })
+
+    if(request.method=="POST"):
+        
+        form=UpdateUserForm(request.POST, request.FILES)
+        if form.is_valid():
+            
+            user=request.user
+            batch = form.cleaned_data.get('batch')
+            program = form.cleaned_data.get('program')
+            update = Account.objects.get(user=request.user)
+            update.batch=batch
+            update.program=program
+            user.save()
+            update.save()
+            messages.info(request, 'Profile Updated!!')
+            return redirect('dashboard')
+    params={'form':form}
+    return render(request,'editprofile.html',params)
