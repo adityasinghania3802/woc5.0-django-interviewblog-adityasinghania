@@ -8,7 +8,7 @@ class CreateUserForm(UserCreationForm):
     batch = forms.IntegerField(label='Batch',required=True)
     class Meta:
         model = User
-        fields = ['username','email','program','batch','password1','password2']
+        fields = ['username','first_name','last_name','email','program','batch','password1','password2']
 
 
 # class CreateBlogPost(UserCreationForm):
@@ -24,4 +24,4 @@ class UpdateUserForm(forms.ModelForm):
      batch = forms.IntegerField(label='Batch',required=True)
      class Meta:
         model = User
-        fields = ['program','batch']
+        fields = ['first_name','last_name','program','batch']

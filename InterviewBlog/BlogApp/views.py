@@ -212,6 +212,8 @@ def addcomment(request, pid):
 def editprofile(request):
     user=request.user
     form = UpdateUserForm(initial={
+        'first_name': user.first_name,
+        'last_name' : user.last_name,
         'program':user.account.program,
         'batch' :user.account.batch,
     })
@@ -222,11 +224,15 @@ def editprofile(request):
         if form.is_valid():
             
             user=request.user
+            first_name = form.cleaned_data.get('first_name')
+            last_name = form.cleaned_data.get('last_name')
             batch = form.cleaned_data.get('batch')
             program = form.cleaned_data.get('program')
             update = Account.objects.get(user=request.user)
             update.batch=batch
             update.program=program
+            user.first_name=first_name
+            user.last_name=last_name
             user.save()
             update.save()
             messages.info(request, 'Profile Updated!!')
