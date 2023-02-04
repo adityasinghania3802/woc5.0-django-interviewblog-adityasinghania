@@ -16,7 +16,7 @@ def index(request):
     return render(request,'index.html')
 
 def registerpage(request):
-    form=CreateUserForm(request.POST)
+    form=CreateUserForm(request.POST,request.FILES)
     if(request.method=="POST"):
         
         if form.is_valid():
@@ -24,9 +24,12 @@ def registerpage(request):
 
             user.batch=request.POST.get('batch')
             user.program=request.POST.get('program')
+            user.profile_pic=request.POST.get('profile_pic')
+            print(user.profile_pic)
             update=Account(user=user)
             update.program=user.program
             update.batch=user.batch
+            update.profile_pic=user.profile_pic
             update.save()
             messages.info(request, 'Account has been registered. Login to continue!!')
             return redirect('login')
@@ -216,6 +219,7 @@ def editprofile(request):
         'last_name' : user.last_name,
         'program':user.account.program,
         'batch' :user.account.batch,
+        'profile_pic':user.account.profile_pic,
     })
 
     if(request.method=="POST"):
@@ -228,9 +232,11 @@ def editprofile(request):
             last_name = form.cleaned_data.get('last_name')
             batch = form.cleaned_data.get('batch')
             program = form.cleaned_data.get('program')
+            profile_pic = form.cleaned_data.get('profile_pic')
             update = Account.objects.get(user=request.user)
             update.batch=batch
             update.program=program
+            update.profile_pic=profile_pic
             user.first_name=first_name
             user.last_name=last_name
             user.save()

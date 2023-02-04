@@ -69,8 +69,14 @@
                 <div class="row g-0">
                   <div class="col-md-4 gradient-custom text-center text-white"
                     style="border-top-left-radius: .5rem; border-bottom-left-radius: .5rem;">
+                    {% if user.account.profile_pic %}
+                    <img src="{{user.account.profile_pic.url}}"
+                      alt="Avatar" class="img-fluid img-thumbnail my-5" style="width: 12  0px; height: 100px;" />
+                    {% else %}
                     <img src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png"
                       alt="Avatar" class="img-fluid img-thumbnail my-5" style="width: 100px;" />
+                    {% endif %}
+
                     <h5 style="color: black;">Username: {{request.user.username}}</h5>
                     <!-- <p>Web Designer</p> -->
                     <i class="far fa-edit mb-5"></i>

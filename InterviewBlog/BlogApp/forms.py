@@ -6,9 +6,10 @@ from django.contrib.auth.models import User
 class CreateUserForm(UserCreationForm):
     program = forms.CharField(label='Program',required=True)
     batch = forms.IntegerField(label='Batch',required=True)
+    profile_pic = forms.ImageField(label="Upload Profile Pic - ", required=False)
     class Meta:
         model = User
-        fields = ['username','first_name','last_name','email','program','batch','password1','password2']
+        fields = ['username','first_name','last_name','email','program','batch','password1','password2','profile_pic']
 
 
 # class CreateBlogPost(UserCreationForm):
@@ -22,6 +23,7 @@ class CreateUserForm(UserCreationForm):
 class UpdateUserForm(forms.ModelForm):
      program = forms.CharField(label='Program',required=True)
      batch = forms.IntegerField(label='Batch',required=True)
+     profile_pic = forms.ImageField(label="Upload Profile Pic - ", required=False)
      class Meta:
         model = User
-        fields = ['first_name','last_name','program','batch']
+        fields = ['first_name','last_name','program','batch','profile_pic']

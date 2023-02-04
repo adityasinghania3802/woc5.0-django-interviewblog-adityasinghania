@@ -87,10 +87,10 @@
           </div>
         </div>
       </nav>
-      <section class="vh-100">
-      <!-- <div class="container"> -->
-        <!-- <div class="row"> -->
-          <div class="col-md-4 offset-md-4">
+      <!-- <section class="vh-100"> -->
+      <div class="container">
+        <div class="row">
+          <div class="col-md-6 offset-md-3">
             <h2 class="tc text-center mt-5">Edit Profile!</h2>
             <div class="card my-5">
     
@@ -121,6 +121,11 @@
                   {{form.batch}}
                   {{form.batch.errors}}
                 </div><br>
+                <div class="mb-3">
+                  {{form.profile_pic.label}}
+                  {{form.profile_pic}}
+                  {{form.profile_pic.errors}}
+                </div><br>
                 <div>
                     <div class="text-center"><button type="submit" class="btn btn-success px-5 mb-1 w-30" >Save Changes</button></div>
                 </div>
@@ -129,9 +134,9 @@
             </div>
     
           </div>
-        <!-- </div> -->
-      <!-- </div> -->
-    </section>
+        </div>
+      </div>
+    <!-- </section> -->
 
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
     </body>
