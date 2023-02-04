@@ -36,6 +36,9 @@
             .to{
                 color: rgb(11, 104, 244);
             }
+            .tq{
+              color : red
+            }
     </style>
   </head>
   <body>
@@ -62,11 +65,13 @@
               {% for message in messages %}
               <p id="messages">{{message}}</p>
               {%endfor%}
-  
+              
               <div class="text-center"><button type="submit" class="btn btn-color px-5 mb-5 w-100">Login</button></div>
               <div id="emailHelp" class="form-text text-center mb-5 text-dark">Not
                 Registered? <a href="{% url 'register' %}" class="to fw-bold"> Create an
                   Account!</a>
+                  <br>
+                  <a href="{% url 'reset_password' %}" class="tq fw-bold"> Forgot Password !?</a>
               </div>
             </form>
           </div>

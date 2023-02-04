@@ -78,7 +78,7 @@
       {% endfor %}
       <div class="container my-4">
         {% for i in post %}
-        <div class="col-md-11">
+        <div class="col-md-10 offset-md-1">
           <div class="row g-0 border rounded overflow-hidden flex-md-row mb-5 shadow-sm h-md-250 position-relative">
             <div class="col p-4 d-flex flex-column position-static bg-white ">
               <strong class="d-inline-block mb-2 text-primary">{{i.author.first_name}} {{i.author.last_name}} | {{i.job_profile}}</strong>
@@ -88,6 +88,8 @@
 
               <p class="card-text mb-1">{{i.job_offer_type}}</p>
               <div class="mb-1 text-muted">Year: {{i.year}}</div>
+              <br>
+                        <p>{{i.blog_content|slice:100}}</p>
               <span>
                 <a href="/viewpost/{{i.post_id}}" class=" btn btn-primary mt-2" role="button"
                   style="width: 25%;">Continue reading...</a>
@@ -99,12 +101,12 @@
                   style="width: 15%; margin-left:10px">Delete Blog</a>
               </span>
             </div>
-            <div class="col-auto d-none d-lg-block">
+            <!-- <div class="col-auto d-none d-lg-block">
               <img class="bd-placeholder-img" width="250" height="260"
                 src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png" alt="">
               <title>Placeholder</title>
 
-            </div>
+            </div> -->
           </div>
         </div>
         {% endfor %}
