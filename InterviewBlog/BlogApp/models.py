@@ -1,6 +1,7 @@
 from django.db import models
 from django import forms
 from django.contrib.auth.models import User
+from datetime import datetime, date
 
 # Create your models here.
 class Account(models.Model):
@@ -25,6 +26,7 @@ class BlogPost(models.Model):
     author = models.ForeignKey(User,on_delete=models.CASCADE,blank=True,null=True)
     bookmarks = models.ManyToManyField(User, default=None, blank=True, related_name='bookmarks')
     likes = models.ManyToManyField(User, default=None, blank=True, related_name='likes')
+    post_date = models.DateField(auto_now_add=True)
     # likecount = models.IntegerField(default=0)
 
     def __str__(self):

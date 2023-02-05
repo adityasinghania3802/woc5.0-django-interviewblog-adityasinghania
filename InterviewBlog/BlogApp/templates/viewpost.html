@@ -4,6 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>View Post</title>
+    <link rel="stylesheet" href="https://kit.fontawesome.com/961682fbc2.css" crossorigin="anonymous">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
     <style>
         body{
@@ -75,20 +76,19 @@
                 <br>
                 
                 {% if not liked %}
-                <a href="/likes/{{post.post_id}}" class="btn btn-primary mb-4 " role="button" style="width: 12%;"> Like </a>
+                <a href="/likes/{{post.post_id}}" class="btn btn-primary mb-4 " role="button" style="width: 10%;"><i class="fa-regular fa-thumbs-up"></i></a>
 
                 {% else %}
-                <a href="/likes/{{post.post_id}}" class="btn btn-danger mb-4 " role="button" style="width: 12%;"> Unlike </a>
+                <a href="/likes/{{post.post_id}}" class="btn btn-danger mb-4 " role="button" style="width: 10%;"><i class="fa-regular fa-thumbs-down"></i></a>
 
                 {% endif %}
-                 {{total_likes}} Likes
 
                 {% if not bookmarked %}
-                <a href="/bookmarks/{{post.post_id}}" class=" btn btn-success mb-4" role="button" style="width: 25%;
-                margin-left: 25%;">Add to Bookmarks</a>
+                <a href="/bookmarks/{{post.post_id}}" class=" btn btn-warning mb-4" role="button" style="width: 25%;
+                margin-left: 60%;">Bookmark&nbsp;<i class="fa-regular fa-bookmark"></i></a>
 
                 {% else %}
-                <a href="/bookmarks/{{post.post_id}}" class=" btn btn-danger mb-4" role="button" style="width: 35%; margin-left: 25%;">Remove from Bookmarks</a>
+                <a href="/bookmarks/{{post.post_id}}" class=" btn btn-danger mb-4" role="button" style="width: 25%; margin-left: 60%;">Remove&nbsp;<i class=" fa-regular fa-bookmark"></i></a>
 
                 {% endif %}
                 <br>
@@ -109,7 +109,7 @@
         <br>
         <h2 style="margin-left: 20px;">Comments...</h2>
         {% if targetcomments|length > 0 %}
-        <a href="/viewpost/{{post.post_id}}/addcomment" class=" btn btn-info mt-2" role="button" style="width: 15%; margin-left: 45%;">Add Your Comment </a>
+        <a href="/viewpost/{{post.post_id}}/addcomment" class=" btn btn-success mt-2" role="button" style="width: 10%; margin-left: 45%;">Comment <i class="fa-solid fa-comment"></i></a>
         <br><br><br>
           {% for i in targetcomments %}
           <div>
@@ -121,7 +121,7 @@
           
           {% else %}
           
-        <span><br><h4>No comments yet!</h4><a href="/viewpost/{{post.post_id}}/addcomment" class=" btn btn-primary mt-2 mb-5" role="button" style="width: 15%;">Add Comments</a></span>
+        <span><br><h4>No comments yet!</h4><a href="/viewpost/{{post.post_id}}/addcomment" class=" btn btn-success mt-2 mb-5" role="button" style="width: 10%; margin-left: 600px;">Comment <i class="fa-solid fa-comment"></i></a></span>
 
         {% endif %}
         
@@ -129,5 +129,6 @@
     </div>
   <!-- </section> -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+      <script src="https://kit.fontawesome.com/961682fbc2.js" crossorigin="anonymous"></script>
   </body>
 </html>

@@ -122,18 +122,18 @@
                 <div
                     class="row g-0 border border-info rounded overflow-hidden flex-md-row mb-5 shadow-sm h-md-250 position-relative">
                     <div class="col p-4 d-flex flex-column position-static bg-white ">
-                        <strong class="d-inline-block mb-2 text-primary">{{i.author.first_name}} {{i.author.last_name}} | {{i.job_profile}}</strong>
+                      <div class="d-flex justify-content-between">
+                      <strong class="d-inline-block mb-2 text-primary">{{i.author.first_name}} {{i.author.last_name}} | {{i.job_profile}} | {{i.company_name}}</strong><p>Last Updated : {{i.post_date}}</p>
+                    </div>  
                         <h3 class="mb-3">{{i.blog_title}}</h3>
-                        
-                        <div class="mb-1 text-muted" style="font-weight: bold;"> {{i.company_name}} </div>
                         
                         <p class="card-text mb-1">{{i.job_offer_type}}</p>
                         <div class="mb-1 text-muted">Year: {{i.year}}</div>
-                        <br>
+                        <!-- <br> -->
                         <p>{{i.blog_content|slice:100}}</p>
                     
-                        <div><a href="/viewpost/{{i.post_id}}" class=" btn btn-primary mt-2" role="button" style="width: 25%;">Continue reading...</a>
-                        <button type="button" class="btn btn-primary mt-2" style="margin-left: 60%;">{{i.likes.count}} Likes</button></div>
+                        <div><a href="/viewpost/{{i.post_id}}" class=" btn btn-info mt-2" role="button" style="width: 18%;">Continue reading &nbsp;<i class="fa-solid fa-book-open"></i></a>
+                        <button type="button" class="btn btn-primary mt-2" style="margin-left: 70%;">{{i.likes.count}}  <i class="fa-regular fa-thumbs-up"></i></button></div>
                     </div>
                     <!-- <div class="col-auto d-none d-lg-block">
                         <img class="bd-placeholder-img" width="250" height="260"  src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png" alt="">
@@ -146,5 +146,6 @@
             
     </div>
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+      <script src="https://kit.fontawesome.com/961682fbc2.js" crossorigin="anonymous"></script>
     </body>
   </html>

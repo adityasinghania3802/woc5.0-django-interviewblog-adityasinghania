@@ -5,6 +5,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>My Blogs</title>
+  <link rel="stylesheet" href="https://kit.fontawesome.com/961682fbc2.css" crossorigin="anonymous">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
   <style>
@@ -81,24 +82,24 @@
         <div class="col-md-10 offset-md-1">
           <div class="row g-0 border border-info rounded overflow-hidden flex-md-row mb-5 shadow-sm h-md-250 position-relative">
             <div class="col p-4 d-flex flex-column position-static bg-white ">
-              <strong class="d-inline-block mb-2 text-primary">{{i.author.first_name}} {{i.author.last_name}} | {{i.job_profile}}</strong>
+              <div class="d-flex justify-content-between">
+                <strong class="d-inline-block mb-2 text-primary">{{i.author.first_name}} {{i.author.last_name}} | {{i.job_profile}} | {{i.company_name}}</strong><p>Last Updated : {{i.post_date}}</p>
+              </div> 
               <h3 class="mb-3">{{i.blog_title}}</h3>
-
-              <div class="mb-1 text-muted" style="font-weight: bold;"> {{i.company_name}} </div>
 
               <p class="card-text mb-1">{{i.job_offer_type}}</p>
               <div class="mb-1 text-muted">Year: {{i.year}}</div>
-              <br>
+              <!-- <br> -->
                         <p>{{i.blog_content|slice:100}}</p>
               <span>
-                <a href="/viewpost/{{i.post_id}}" class=" btn btn-primary mt-2" role="button"
-                  style="width: 25%;">Continue reading...</a>
-                <button type="button" class="btn btn-primary mt-2" style="margin-left: 25%;">{{i.likes.count}}
-                  Likes</button>
-                <a href="/editpost/{{i.post_id}}" class=" btn btn-warning mt-2" style=" width: 15%;margin-left: 30px;"
-                  role="button">Edit Blog</a>
+                <a href="/viewpost/{{i.post_id}}" class=" btn btn-info mt-2" role="button"
+                  style="width: 18%;">Continue reading &nbsp;<i class="fa-solid fa-book-open"></i></a>
+                <button type="button" class="btn btn-primary mt-2" style="margin-left: 45%;">{{i.likes.count}}
+                  <i class="fa-regular fa-thumbs-up"></i></button>
+                <a href="/editpost/{{i.post_id}}" class=" btn btn-warning mt-2" style=" width: 8%;margin-left: 80px;"
+                  role="button">Edit&nbsp; <i class="fa-solid fa-pen-to-square"></i></a>
                 <a href="/deletepost/{{i.post_id}}" class=" btn btn-danger mt-2" role="button"
-                  style="width: 15%; margin-left:10px">Delete Blog</a>
+                  style="width: 10%; margin-left:10px">Delete&nbsp; <i class="fa-solid fa-trash"></i></a>
               </span>
             </div>
             <!-- <div class="col-auto d-none d-lg-block">
@@ -117,6 +118,7 @@
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN"
     crossorigin="anonymous"></script>
+    <script src="https://kit.fontawesome.com/961682fbc2.js" crossorigin="anonymous"></script>
 </body>
 
 </html>
