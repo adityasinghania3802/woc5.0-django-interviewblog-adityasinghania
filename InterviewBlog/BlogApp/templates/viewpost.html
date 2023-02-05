@@ -20,6 +20,9 @@
         /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
         background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
         }
+        .cw{
+          color: white;
+        }
     </style>
   </head>
   <body>
@@ -65,30 +68,32 @@
         <br><br><br>
         <!-- <section class="vh-100"> -->
           <div style="height: auto;">
-        <div class="container my-4 bg-white">
+        <div class="container my-4 border border-dark border-4"style="background:rgb(95, 95, 95) ;  border-radius:40px; ">
           <div class="row featurette d-flex justify-content-center align-items-center">
-              <div class="col-md-6 order-md-2">
-                <h1 class="featurette-heading fw-normal lh-2 mt-5 mb-4">{{post.blog_title}}</h1>
-                <h5><span class=" text-primary">- By {{post.author}} | {{post.job_profile}} at {{post.company_name}}</span></h5>
-                <span>{{post.job_offer_type}} | Year - {{post.year}}</span>
+              <div class="col-md-10 ">
+                <h1 class="featurette-heading fw-normal lh-2 mt-5 mb-2 cw text-center">{{post.blog_title}}</h1>
+                <h4><span class=" text-info">- By {{post.author}} | {{post.job_profile}} at {{post.company_name}}</span></h4> <p style="color: bisque;">Last Updated : {{post.post_date}}</p>
+                <strong class="cw">{{post.job_offer_type}} | Year - {{post.year}}</strong>
                 <br><br>
-                <span class="mb-4" style=" display: inline-block;">{{post.blog_content}}</span>
+                <span class="mb-4 cw" style=" display: inline-block;">{{post.blog_content}}</span>
+                <br>
+                <br>
                 <br>
                 
                 {% if not liked %}
-                <a href="/likes/{{post.post_id}}" class="btn btn-primary mb-4 " role="button" style="width: 10%;"><i class="fa-regular fa-thumbs-up"></i></a>
+                <a href="/likes/{{post.post_id}}" class="btn btn-primary mb-4 " role="button" style="width: 5%; margin-left: 75%;"><i class="fa-regular fa-thumbs-up"></i></a>
 
                 {% else %}
-                <a href="/likes/{{post.post_id}}" class="btn btn-danger mb-4 " role="button" style="width: 10%;"><i class="fa-regular fa-thumbs-down"></i></a>
+                <a href="/likes/{{post.post_id}}" class="btn btn-danger mb-4 " role="button" style="width: 5%; margin-left: 75%;"><i class="fa-regular fa-thumbs-down"></i></a>
 
                 {% endif %}
 
                 {% if not bookmarked %}
-                <a href="/bookmarks/{{post.post_id}}" class=" btn btn-warning mb-4" role="button" style="width: 25%;
-                margin-left: 60%;">Bookmark&nbsp;<i class="fa-regular fa-bookmark"></i></a>
+                <a href="/bookmarks/{{post.post_id}}" class=" btn btn-warning mb-4" role="button" style="width: 15%;margin-left: 3%;
+                ">Bookmark&nbsp;<i class="fa-regular fa-bookmark"></i></a>
 
                 {% else %}
-                <a href="/bookmarks/{{post.post_id}}" class=" btn btn-danger mb-4" role="button" style="width: 25%; margin-left: 60%;">Remove&nbsp;<i class=" fa-regular fa-bookmark"></i></a>
+                <a href="/bookmarks/{{post.post_id}}" class=" btn btn-danger mb-4" role="button" style="width: 15%;margin-left: 3%;">Remove&nbsp;<i class=" fa-regular fa-bookmark"></i></a>
 
                 {% endif %}
                 <br>
@@ -97,35 +102,36 @@
                 {% endfor %}
               </div>
               
-              <div class="col-md-4 order-md-1">
+              <!-- <div class="col-md-4 order-md-1">
                   <img class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto" src="https://cdn.pixabay.com/photo/2016/03/31/19/56/avatar-1295397__340.png" alt="">
           
-              </div>
+              </div> -->
             </div>
             
       </div>
       <br>
-      <div class="container bg-white">
+      <div class="container border border-dark border-2" style=" border-radius: 40px; background: bisque;">
         <br>
-        <h2 style="margin-left: 20px;">Comments...</h2>
+        <h2 style="margin-left: 20px;">Comments Section -</h2>
         {% if targetcomments|length > 0 %}
         <a href="/viewpost/{{post.post_id}}/addcomment" class=" btn btn-success mt-2" role="button" style="width: 10%; margin-left: 45%;">Comment <i class="fa-solid fa-comment"></i></a>
         <br><br><br>
           {% for i in targetcomments %}
           <div>
-            <h5 style="font-weight: bold; margin-left: 80px;">{{i.name}}</h5>
-            <h6 style="margin-left: 80px;">{{i.body}}</h6>
+            <h5 style="font-weight: bold; margin-left: 80px; color:brown; " class="">{{i.name}} - </h5>
+            <h6 style="margin-left: 100px; margin-right: 80px;">{{i.body}}</h6>
             <br>
           </div>
             {% endfor %}
           
           {% else %}
           
-        <span><br><h4>No comments yet!</h4><a href="/viewpost/{{post.post_id}}/addcomment" class=" btn btn-success mt-2 mb-5" role="button" style="width: 10%; margin-left: 600px;">Comment <i class="fa-solid fa-comment"></i></a></span>
+        <span><br><h4 class="text-center">No comments yet!</h4><a href="/viewpost/{{post.post_id}}/addcomment" class=" btn btn-success mt-2 mb-5" role="button" style="width: 10%; margin-left: 580px;">Comment <i class="fa-solid fa-comment"></i></a></span>
 
         {% endif %}
         
       </div>
+      <br><br>
     </div>
   <!-- </section> -->
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>

@@ -23,6 +23,7 @@
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+      <div class="container-fluid">
           <a class="navbar-brand" href="#" style=" font-weight:bold;">Interview Blog</a>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -91,7 +92,7 @@
                 <textarea class="form-control border-dark border-2" id="blog_content" name="blog_content"  placeholder="Blog Content" rows="7" required></textarea>
             </div>
             {% for message in messages %}
-              <h4 id="messages" class="text-center" style="color: white;">{{message}}</h3>
+              <h4 id="messages" class="text-center" style="color: black;">{{message}}</h3>
               {%endfor%}
             <br>
             

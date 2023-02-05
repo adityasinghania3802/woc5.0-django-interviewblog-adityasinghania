@@ -51,11 +51,12 @@ def loginpage(request):
     params={}
     return render(request,'login.html',params)
 
+@login_required(login_url='/login')
 def logoutpage(request):
     logout(request)
     return redirect('login')
 
-# @login_required(login_url='/login')
+@login_required(login_url='/login')
 def homepage(request):
     post = BlogPost.objects.all()
     # for i in set:
@@ -66,7 +67,7 @@ def homepage(request):
     return render(request,'home.html',{'post':post})
 
 
-# @login_required(login_url='/login')
+@login_required(login_url='/login')
 def dashboard(request):
     # profile=list(Account.objects.filter(user=request.user).values('batch','program'))
     # batch = profile[0]['batch']
@@ -77,6 +78,7 @@ def dashboard(request):
     # }
     return render(request,'dashboard.html')
 
+@login_required(login_url='/login')
 def addpost(request):
     if request.method=='POST':
             blog_title = request.POST.get('blog_title')
@@ -97,6 +99,7 @@ def addpost(request):
         List.append(i)
     return render(request,'addpost.html',{'List':List})
 
+@login_required(login_url='/login')
 def viewpost(request,pid):
     post=BlogPost.objects.get(post_id=pid)
     # comments = get_object_or_404(Comment, BlogPost.post_id=pid)
@@ -122,6 +125,7 @@ def viewpost(request,pid):
     params = {'post':post, 'targetcomments' : targetcomments, 'total_likes' : total_likes, 'liked' : liked, 'bookmarked' : bookmarked}
     return render(request,'viewpost.html',params)
 
+@login_required(login_url='/login')
 def search(request):
     searchresult=request.GET['search']
     if len(searchresult)>100:
@@ -139,6 +143,7 @@ def search(request):
     params = {'searchPosts' : searchPosts}
     return render(request, 'search.html', params)
 
+@login_required(login_url='/login')
 def likes(request,pid):
     post = BlogPost.objects.get(post_id=pid)
     if post.likes.filter(id=request.user.id).exists():
@@ -148,6 +153,7 @@ def likes(request,pid):
 
     return HttpResponseRedirect(reverse('viewpost', args=[str(pid)]))
 
+@login_required(login_url='/login')
 def bookmarks(request,pid):
     post=BlogPost.objects.get(post_id=pid)
     
@@ -158,10 +164,12 @@ def bookmarks(request,pid):
     return HttpResponseRedirect(reverse('viewpost', args=[str(pid)]))
 
 
+@login_required(login_url='/login')
 def bookmarkslist(request):
     list = BlogPost.objects.filter(bookmarks=request.user)
     return render(request, 'bookmarks.html', {'list': list})
 
+@login_required(login_url='/login')
 def editpost(request,pid):
     post = BlogPost.objects.get(post_id=pid)
     List=[]
@@ -173,6 +181,7 @@ def editpost(request,pid):
     }
     return render(request, 'editpost.html', params)
 
+@login_required(login_url='/login')
 def editpostrecord(request,pid):
     if request.method == 'POST':
         title = request.POST['blog_title']
@@ -192,16 +201,19 @@ def editpostrecord(request,pid):
         messages.info(request, 'Your Entry has been Updated!!')
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
+@login_required(login_url='/login')
 def myblogs(request):
     author=request.user
     post = BlogPost.objects.filter(author=author)
     return render(request, 'myblogs.html', { 'post': post})
 
+@login_required(login_url='/login')
 def deletepost(request,pid):
     BlogPost.objects.filter(post_id=pid).delete()
     myblogs(request)
     return HttpResponseRedirect(request.META['HTTP_REFERER'])
 
+@login_required(login_url='/login')
 def addcomment(request, pid):
     if request.method=='POST':
             post = get_object_or_404(BlogPost, post_id=pid)
@@ -212,6 +224,7 @@ def addcomment(request, pid):
             messages.info(request, 'Your Comment is added!!')
     return render(request, 'addcomment.html')
 
+@login_required(login_url='/login')
 def editprofile(request):
     user=request.user
     form = UpdateUserForm(initial={
