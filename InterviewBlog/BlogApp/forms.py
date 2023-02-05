@@ -1,4 +1,4 @@
-from django.forms import ModelForm,TextInput, EmailInput, NumberInput, PasswordInput
+from django.forms import ModelForm,TextInput, EmailInput, NumberInput, PasswordInput,FileInput
 from django.contrib.auth.forms import UserCreationForm  
 from django import forms
 from django.contrib.auth.models import User 
@@ -52,6 +52,10 @@ class CreateUserForm(UserCreationForm):
                 'class': "form-control", 
                 'style': 'max-width: auto;',
                 'placeholder': 'Confirm Password'
+                }),
+            'profile_pic': FileInput(attrs={
+                'class': "form-control", 
+                'style': 'max-width: auto;',
                 }),
         }
 

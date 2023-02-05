@@ -13,43 +13,51 @@ from django.urls import reverse
 from django.db.models import Max,Min
 
 def index(request):
-    return render(request,'index.html')
+    if(request.user.is_authenticated):
+        return redirect('home')
+    else:
+        return render(request,'index.html')
 
 def registerpage(request):
-    form=CreateUserForm(request.POST,request.FILES)
-    if(request.method=="POST"):
-        
-        if form.is_valid():
-            user=form.save()
+    if(request.user.is_authenticated):
+        return redirect('home')
+    else:
+        form=CreateUserForm(request.POST,request.FILES)
+        if(request.method=="POST"):
+            
+            if form.is_valid():
+                user=form.save()
 
-            user.batch=request.POST.get('batch')
-            user.program=request.POST.get('program')
-            user.profile_pic=form.cleaned_data.get('profile_pic')
-            print(user.profile_pic)
-            update=Account(user=user)
-            update.program=user.program
-            update.batch=user.batch
-            update.profile_pic=user.profile_pic
-            update.save()
-            messages.info(request, 'Account has been registered. Login to continue!!')
-            return redirect('login')
-    params={'form':form}
-    return render(request,'register.html',params)
+                user.batch=request.POST.get('batch')
+                user.program=request.POST.get('program')
+                user.profile_pic=form.cleaned_data.get('profile_pic')
+                print(user.profile_pic)
+                update=Account(user=user)
+                update.program=user.program
+                update.batch=user.batch
+                update.profile_pic=user.profile_pic
+                update.save()
+                messages.info(request, 'Account has been registered. Login to continue!!')
+                return redirect('login')
+        params={'form':form}
+        return render(request,'register.html',params)
 
 def loginpage(request):
-    
-    if(request.method=="POST"):
-        username = request.POST.get('username')
-        password = request.POST.get('password')
-        user = authenticate(request, username=username, password=password)
+    if(request.user.is_authenticated):
+        return redirect('home')
+    else: 
+        if(request.method=="POST"):
+            username = request.POST.get('username')
+            password = request.POST.get('password')
+            user = authenticate(request, username=username, password=password)
 
-        if user is not None:
-            login(request, user)
-            return redirect ('dashboard')
-        else:
-            messages.info(request, 'Username or password is incorrect')
-    params={}
-    return render(request,'login.html',params)
+            if user is not None:
+                login(request, user)
+                return redirect ('dashboard')
+            else:
+                messages.info(request, 'Username or password is incorrect')
+        params={}
+        return render(request,'login.html',params)
 
 @login_required(login_url='/login')
 def logoutpage(request):
