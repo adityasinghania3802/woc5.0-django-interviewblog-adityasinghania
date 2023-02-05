@@ -42,7 +42,7 @@
                 </a>
                 <ul class="dropdown-menu">
                   <li><a class="dropdown-item" href="{% url 'bookmarkslist' %}">BookMarks</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
                   <li><hr class="dropdown-divider"></li>
                   <li><a class="dropdown-item" href="{% url 'dashboard' %}">DashBoard</a></li>
                 </ul>
@@ -120,7 +120,7 @@
       {% for i in post %}
             <div class="col-md-10 offset-md-1">
                 <div
-                    class="row g-0 border rounded overflow-hidden flex-md-row mb-5 shadow-sm h-md-250 position-relative">
+                    class="row g-0 border border-info rounded overflow-hidden flex-md-row mb-5 shadow-sm h-md-250 position-relative">
                     <div class="col p-4 d-flex flex-column position-static bg-white ">
                         <strong class="d-inline-block mb-2 text-primary">{{i.author.first_name}} {{i.author.last_name}} | {{i.job_profile}}</strong>
                         <h3 class="mb-3">{{i.blog_title}}</h3>
