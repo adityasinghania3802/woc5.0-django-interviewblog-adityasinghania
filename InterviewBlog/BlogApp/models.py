@@ -28,7 +28,7 @@ class BlogPost(models.Model):
     bookmarks = models.ManyToManyField(User, default=None, blank=True, related_name='bookmarks')
     likes = models.ManyToManyField(User, default=None, blank=True, related_name='likes')
     post_date = models.DateField(auto_now_add=True)
-    # likecount = models.IntegerField(default=0)
+    likecount = models.IntegerField(default=0)
 
     def __str__(self):
         return self.blog_title + '|' + str(self.author)

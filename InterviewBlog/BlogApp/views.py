@@ -66,12 +66,15 @@ def logoutpage(request):
 
 @login_required(login_url='/login')
 def homepage(request):
-    post = BlogPost.objects.all()
-    # for i in set:
-    #     i.likecount = i.total_likes()
-    #     print(i.likecount)
-    # # post = BlogPost.objects.annotate(max_likes=Max('likecount')).order_by('-max_likes')
-    # post = BlogPost.objects.all().order_by('-likecount')
+    set = BlogPost.objects.all()
+    print(set)
+    for i in set:
+        print(i)
+        i.likecount = i.total_likes()
+        print(i.likecount)
+        i.save()
+    
+    post = BlogPost.objects.all().order_by('-likecount')
     return render(request,'home.html',{'post':post})
 
 
