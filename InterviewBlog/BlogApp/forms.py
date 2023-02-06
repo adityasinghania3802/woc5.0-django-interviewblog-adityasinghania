@@ -9,7 +9,7 @@ class CreateUserForm(UserCreationForm):
     profile_pic = forms.ImageField(label="Upload Profile Pic - ", required=False)
     class Meta:
         model = User
-        fields = ['username','first_name','last_name','email','program','batch','password1','password2','profile_pic']
+        fields = ['username','first_name','last_name','email','password1','password2','program','batch','profile_pic']
         # fields ='__all__'
         widgets = {
             'username': TextInput(attrs={

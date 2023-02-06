@@ -67,11 +67,8 @@ def logoutpage(request):
 @login_required(login_url='/login')
 def homepage(request):
     set = BlogPost.objects.all()
-    print(set)
     for i in set:
-        print(i)
         i.likecount = i.total_likes()
-        print(i.likecount)
         i.save()
     
     post = BlogPost.objects.all().order_by('-likecount')
@@ -144,14 +141,23 @@ def search(request):
     else:
         searchPostsTitle = BlogPost.objects.filter(blog_title__icontains=searchresult)
         searchPostsContent = BlogPost.objects.filter(blog_content__icontains=searchresult)
+        # obj = BlogPost.objects.all()
+        # for i in obj:
+        #     query1 = i.author.first_name + i.author.last_name
+        #     if searchresult in query1 :#or searchresult in query2:
+        #         searchauthor = BlogPost.objects.filter(author=i.author)
         # searchPostsName = BlogPost.objects.filter(author__icontains=searchresult)
         searchPostsYear = BlogPost.objects.filter(year__icontains=searchresult)
         searchPostsCompany = BlogPost.objects.filter(company_name__icontains=searchresult)
         searchPostsJobProfile = BlogPost.objects.filter(job_profile__icontains=searchresult)
         searchPostsJobOfferType = BlogPost.objects.filter(job_offer_type__icontains=searchresult)
         searchPosts=searchPostsTitle.union(searchPostsContent,searchPostsCompany,searchPostsYear,searchPostsJobProfile,searchPostsJobOfferType)
+    for i in searchPosts:
+        i.likecount = i.total_likes()
+        i.save()
     
-    params = {'searchPosts' : searchPosts}
+    post = searchPosts.order_by('-likecount')
+    params = {'searchPosts' : post}
     return render(request, 'search.html', params)
 
 @login_required(login_url='/login')
@@ -178,7 +184,11 @@ def bookmarks(request,pid):
 @login_required(login_url='/login')
 def bookmarkslist(request):
     list = BlogPost.objects.filter(bookmarks=request.user)
-    return render(request, 'bookmarks.html', {'list': list})
+    for i in list:
+        i.likecount = i.total_likes()
+        i.save()
+    post = list.order_by('-likecount')
+    return render(request, 'bookmarks.html', {'list': post})
 
 @login_required(login_url='/login')
 def editpost(request,pid):
@@ -215,7 +225,11 @@ def editpostrecord(request,pid):
 @login_required(login_url='/login')
 def myblogs(request):
     author=request.user
-    post = BlogPost.objects.filter(author=author)
+    list = BlogPost.objects.filter(author=author)
+    for i in list:
+        i.likecount = i.total_likes()
+        i.save()
+    post = list.order_by('-likecount')
     return render(request, 'myblogs.html', { 'post': post})
 
 @login_required(login_url='/login')
