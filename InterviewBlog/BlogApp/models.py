@@ -2,6 +2,7 @@ from django.db import models
 from django import forms
 from django.contrib.auth.models import User
 from datetime import datetime, date
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 class Account(models.Model):
@@ -16,7 +17,7 @@ class Account(models.Model):
 class BlogPost(models.Model):
     post_id = models.AutoField(primary_key=True)
     blog_title = models.CharField(max_length=100,default="Read my first post")
-    blog_content = models.TextField(default="..")
+    blog_content = RichTextField(blank=True, null=True)
     company_name = models.CharField(max_length=50,default="")
     CHOICES = (('Summer Internship','Summer Intership'),('Winter Internship Only','Winter Intership Only'),('Winter Internship & Job','Winter Internship & Job'),('Job Only','Job Only'))
     job_offer_type = models.CharField(max_length=100, choices=CHOICES, default="Job Only")
@@ -37,7 +38,7 @@ class BlogPost(models.Model):
 
 class Comment(models.Model):
     postcomments = models.ForeignKey(BlogPost, on_delete=models.CASCADE, related_name='postcomments', default=None)
-    name = models.CharField(max_length=50)
+    name = models.CharField(max_length=50, default="Anonymous")
     body = models.TextField()
 
     def __str__(self):

@@ -20,6 +20,7 @@
         background: linear-gradient(to right bottom, rgba(246, 211, 101, 1), rgba(253, 160, 133, 1));
         }
     </style>
+    <script src="https://cdn.ckeditor.com/ckeditor5/36.0.0/classic/ckeditor.js"></script>
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -89,7 +90,17 @@
               <input type="number" class="form-control border-dark border-2" id="year" placeholder="Year" name="year" value="{{post.year}}" required>
             </div>
             <div class="mb-3">
-                <textarea class="form-control border-dark border-2" id="blog_content" name="blog_content"  placeholder="Blog Content" rows="7" required>{{post.blog_content}}</textarea>
+                <textarea id="blog_content" name="blog_content"  placeholder="Blog Content">{{post.blog_content}}</textarea>
+                <script>
+                  ClassicEditor
+                    .create(document.querySelector('#blog_content'))
+                    .then(editor => {
+                      console.log(editor);
+                    })
+                    .catch(error => {
+                      console.error(error);
+                    });
+                </script>
             </div>
             {% for message in messages %}
               <h4 id="messages" class="text-center" style="color: black;">{{message}}</h3>

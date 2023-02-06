@@ -223,14 +223,15 @@ def deletepost(request,pid):
 
 @login_required(login_url='/login')
 def addcomment(request, pid):
+    post = get_object_or_404(BlogPost, post_id=pid)
     if request.method=='POST':
-            post = get_object_or_404(BlogPost, post_id=pid)
+            # post = get_object_or_404(BlogPost, post_id=pid)
             name = request.POST.get('name')
             body = request.POST.get('body')
             update=Comment(name=name, body=body, postcomments=post)
             update.save()
             messages.info(request, 'Your Comment is added!!')
-    return render(request, 'addcomment.html')
+    return render(request, 'addcomment.html',{'post' : post})
 
 @login_required(login_url='/login')
 def editprofile(request):

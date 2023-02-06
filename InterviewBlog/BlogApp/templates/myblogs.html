@@ -90,9 +90,9 @@
               <h3 class="mb-3 cw">{{i.blog_title}}</h3>
 
               <p class="card-text mb-1 cw">{{i.job_offer_type}}</p>
-              <div class="mb-1" style="color:beige">Year: {{i.year}}</div>
-              <!-- <br> -->
-                        <p class="cw">{{i.blog_content|slice:100}}</p>
+              <div class="mb-3" style="color:beige">Year: {{i.year}}</div>
+              
+                        <span class="cw">{{i.blog_content|safe|slice:120}}</span>
               <span>
                 <a href="/viewpost/{{i.post_id}}" class=" btn btn-light mt-2" role="button"
                   style="width: 18%;">Continue reading &nbsp;<i class="fa-solid fa-book-open"></i></a>

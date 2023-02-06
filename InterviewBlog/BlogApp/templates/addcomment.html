@@ -69,13 +69,13 @@
             {% csrf_token %}
             <div class="mb-3">
               <input type="text" class="form-control border-dark border-2" id="name"
-                placeholder="Name" name="name" required>
+                placeholder="Name" name="name" value="{{request.user.first_name}} {{request.user.last_name}}" required readonly>
             </div>
             <div class="mb-3">
                 <textarea class="form-control border-dark border-2" id="body" name="body"  placeholder="Body" rows="4" required></textarea>
             </div>
             <br>
-            <div class="text-center"><button  type="submit" class="btn btn-success mb-5" style="width: 15%;">Comment&nbsp;<i class="fa-solid fa-comment"></i></button></div>
+            <div class=""><a class="btn btn-primary mb-5" href="/viewpost/{{post.post_id}}" role="button">Back</a><button  type="submit" class="btn btn-success mb-5" style="width: 15%; margin-left: 350px;">Comment&nbsp;<i class="fa-solid fa-comment"></i></button> </div>
             {% for message in messages %}
               <h4 id="messages" class="text-center" style="color: black;">{{message}}</h3>
               {%endfor%}
